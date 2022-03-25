@@ -1,0 +1,63 @@
+﻿  Game.cpp
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(14,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(14,19): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(21,11): warning C4244: 'argument': conversion from 'const double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(29,28): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(29,19): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(147,76): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(147,50): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(156,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(204,76): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(204,50): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(253,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(254,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(293,115): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(293,86): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(294,117): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(294,55): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(295,51): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(295,41): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(302,104): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(305,98): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(305,65): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(309,85): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(309,169): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(323,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(366,51): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(366,39): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(414,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(417,37): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+C:\Users\trevorkurre\source\repos\Chess\Chess\Game.cpp(425,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Chess.vcxproj -> C:\Users\trevorkurre\source\repos\Chess\Debug\Chess.exe
