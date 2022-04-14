@@ -75,6 +75,11 @@ int main()
             }
         }
 
+        if (!m_game.HasTurn() && !m_game.HasWinner()) {
+            //computer's turn
+            m_game.ComputerTurn();
+        }
+
         //update
         m_game.UpdatePiecePositions(pos.x, pos.y, dx, dy);
 
@@ -85,6 +90,9 @@ int main()
 
         //check if someone won the game
         if (m_game.HasWinner()) {
+            //open the pause menu
+            m_menu.OpenPauseMenu(m_window);
+
             //display the winner
             if (m_game.GetWinner() == "black") {
                 m_menu.DrawBlackVictoryText(m_window);
@@ -92,9 +100,6 @@ int main()
             else if (m_game.GetWinner() == "white") {
                 m_menu.DrawWhiteVictoryText(m_window);
             }
-
-            //open the pause menu
-            m_menu.OpenPauseMenu(m_window);
         }
         //check if the game was started
         else if (!m_start) {

@@ -3,6 +3,7 @@
 Piece::Piece()
 {
     SetType("piece");
+    SetTypeNum(0);
     SetColor("black");
     SetCapture(false);
     SetMoved(false);
@@ -19,6 +20,11 @@ Sprite Piece::GetSprite()
 std::string Piece::GetType()
 {
     return m_type;
+}
+
+int Piece::GetTypeNum()
+{
+    return m_typeNum;
 }
 
 std::string Piece::GetColor()
@@ -128,6 +134,11 @@ void Piece::SetType(const std::string a_type)
     m_type = a_type;
 }
 
+void Piece::SetTypeNum(const int a_type)
+{
+    m_typeNum = a_type;
+}
+
 void Piece::SetColor(const std::string a_color)
 {
     m_color = a_color;
@@ -159,6 +170,10 @@ void Piece::SetNewPosition(const Vector2f a_position)
 }
 
 void Piece::UpdateValidMoves(int a_size, Piece* a_pieces[])
+{
+}
+
+void Piece::ValidMovesAt(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves)
 {
 }
 
@@ -256,6 +271,7 @@ SYNOPSIS
             a_move  --> the move to be validated
             a_pieces  --> the set of all pieces on the board
             a_size  --> the size of the grid squares
+            a_moves --> the list of moves being added to
 
 DESCRIPTION
 
@@ -270,13 +286,13 @@ RETURNS
 
 */
 /**/
-bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size)
+bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves)
 {
     for (int i = 0; i < 32; i++) {
         if (!a_pieces[i]->IsCaptured() && a_pieces[i]->GetOldPosition() != this->GetOldPosition() && a_move == ToChessNote(a_pieces[i]->GetOldPosition(), a_size)) {
             //if the piece blocking the path is the opposite color, include the move to allow capturing
             if (a_pieces[i]->GetColor() != this->GetColor()) {
-                m_moves.push_back(a_move);
+                a_moves.push_back(a_move);
                 return true;
             }
             //if the piece blocking the path is the same color, don't include the move
@@ -287,7 +303,7 @@ bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int 
     }
     return false;
 }
-/*bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size);*/
+/*bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);*/
 
 /**/
 /*

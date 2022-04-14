@@ -15,5 +15,6 @@ public:
 
 	//movement functions
 	void UpdateValidMoves(int a_size, Piece* a_pieces[]);
-	void AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_size);
+	void ValidMovesAt(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
+	void AddDiagonalMoves(std::string a_pos, Piece* a_pieces[], int a_size, std::vector<std::string>& a_moves);
 };

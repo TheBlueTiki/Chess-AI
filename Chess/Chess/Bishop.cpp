@@ -21,10 +21,15 @@ void Bishop::UpdateValidMoves(int a_size, Piece* a_pieces[])
 
     //find valid moves
     std::string oldPos = ToChessNote(GetOldPosition(), a_size);
-    AddDiagonalMoves(oldPos, a_pieces, a_size);
+    AddDiagonalMoves(oldPos, a_pieces, a_size, m_moves);
 }
 
-void Bishop::AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_size)
+void Bishop::ValidMovesAt(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves)
+{
+    AddDiagonalMoves(a_pos, a_pieces, a_size, a_moves);
+}
+
+void Bishop::AddDiagonalMoves(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves)
 {
     std::string newPos = "";
     bool stop = false;
@@ -32,11 +37,11 @@ void Bishop::AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_siz
 
     //up-right
     while (!stop) {
-        newPos += char(a_oldPos[0] + k);
-        newPos += char(a_oldPos[1] + k);
+        newPos += char(a_pos[0] + k);
+        newPos += char(a_pos[1] + k);
 
-        if (!IsOutOfBounds(newPos) && !IsObstructed(newPos, a_pieces, a_size)) {
-            m_moves.push_back(newPos);
+        if (!IsOutOfBounds(newPos) && (!IsObstructed(newPos, a_pieces, a_size, a_moves) || newPos == ToChessNote(GetOldPosition(), a_size))) {
+            a_moves.push_back(newPos);
             k++;
         }
         else {
@@ -50,11 +55,11 @@ void Bishop::AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_siz
     //up-left
     stop = false;
     while (!stop) {
-        newPos += char(a_oldPos[0] - k);
-        newPos += char(a_oldPos[1] + k);
+        newPos += char(a_pos[0] - k);
+        newPos += char(a_pos[1] + k);
 
-        if (!IsOutOfBounds(newPos) && !IsObstructed(newPos, a_pieces, a_size)) {
-            m_moves.push_back(newPos);
+        if (!IsOutOfBounds(newPos) && (!IsObstructed(newPos, a_pieces, a_size, a_moves) || newPos == ToChessNote(GetOldPosition(), a_size))) {
+            a_moves.push_back(newPos);
             k++;
         }
         else {
@@ -68,11 +73,11 @@ void Bishop::AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_siz
     //bottom-right
     stop = false;
     while (!stop) {
-        newPos += char(a_oldPos[0] + k);
-        newPos += char(a_oldPos[1] - k);
+        newPos += char(a_pos[0] + k);
+        newPos += char(a_pos[1] - k);
 
-        if (!IsOutOfBounds(newPos) && !IsObstructed(newPos, a_pieces, a_size)) {
-            m_moves.push_back(newPos);
+        if (!IsOutOfBounds(newPos) && (!IsObstructed(newPos, a_pieces, a_size, a_moves) || newPos == ToChessNote(GetOldPosition(), a_size))) {
+            a_moves.push_back(newPos);
             k++;
         }
         else {
@@ -86,11 +91,11 @@ void Bishop::AddDiagonalMoves(std::string a_oldPos, Piece* a_pieces[], int a_siz
     //bottom-left
     stop = false;
     while (!stop) {
-        newPos += char(a_oldPos[0] - k);
-        newPos += char(a_oldPos[1] - k);
+        newPos += char(a_pos[0] - k);
+        newPos += char(a_pos[1] - k);
 
-        if (!IsOutOfBounds(newPos) && !IsObstructed(newPos, a_pieces, a_size)) {
-            m_moves.push_back(newPos);
+        if (!IsOutOfBounds(newPos) && (!IsObstructed(newPos, a_pieces, a_size, a_moves) || newPos == ToChessNote(GetOldPosition(), a_size))) {
+            a_moves.push_back(newPos);
             k++;
         }
         else {

@@ -34,7 +34,7 @@ private:
 						0, 0, 0, 0, 0, 0, 0, 0,
 						6, 6, 6, 6, 6, 6, 6, 6,
 						1, 2, 3, 4, 5, 3, 2, 1 };
-	Computer m_ai;
+	Computer m_comp;
 	bool m_turn;
 public:
 	//constructors
@@ -71,5 +71,11 @@ public:
 	void CheckCapture(Piece* a_piece);
 	void ComputerTurn();
 	bool HasWinner();
+	bool IsInCheck();
 	std::string GetWinner();
+
+	//castling
+	bool IsCastling(Piece* a_piece, const Vector2f a_intent);
+	bool CanCastle(Piece* a_piece, const Vector2f a_intent);
+	void Castle(Piece* a_piece, const Vector2f a_intent);
 };

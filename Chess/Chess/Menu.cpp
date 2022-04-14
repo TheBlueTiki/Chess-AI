@@ -4,10 +4,13 @@ Menu::Menu()
 {
 	SetPause(false);
 	SetScale(2);
+
+	//load the button texture
 	if (!m_buttonTexture.loadFromFile("images/wood.png")) {
 		perror("failed to load texture");
 	}
 
+	//set button textures
 	m_startButton.setTexture(m_buttonTexture);
 	m_startButton.setScale(m_scale / 2, m_scale / 2);
 	m_startButton.setTextureRect(IntRect(0, 200, 456, 112));
@@ -20,10 +23,12 @@ Menu::Menu()
 	m_quitButton.setScale(m_scale / 2, m_scale / 2);
 	m_quitButton.setTextureRect(IntRect(0, 200, 456, 112));
 
+	//load font
 	if (!m_font.loadFromFile("fonts/PetitFormalScript-Regular.ttf")) {
 		perror("failed to load font");
 	}
 
+	//set texts
 	m_startButtonText.setFont(m_font);
 	m_startButtonText.setString("Play");
 	m_startButtonText.setScale(m_scale, m_scale);
@@ -65,16 +70,24 @@ Menu::Menu()
 	m_whiteWinText.setFillColor(Color(255, 255, 255));
 	m_whiteWinText.setOutlineColor(Color(150, 150, 150));
 	m_whiteWinText.setOutlineThickness(0.25);
+
+	//set background fade
+	m_fade.setSize(Vector2f(453 * m_scale, 453 * m_scale));
+	m_fade.setFillColor(Color(255, 255, 255, 128));
+	
 }
 
 Menu::Menu(double a_scale)
 {
 	SetPause(false);
 	SetScale(a_scale);
+
+	//load the button texture
 	if (!m_buttonTexture.loadFromFile("images/wood.png")) {
 		perror("failed to load texture");
 	}
 
+	//set button textures
 	m_startButton.setTexture(m_buttonTexture);
 	m_startButton.setScale(m_scale / 2, m_scale / 2);
 	m_startButton.setTextureRect(IntRect(0, 200, 456, 112));
@@ -87,10 +100,12 @@ Menu::Menu(double a_scale)
 	m_quitButton.setScale(m_scale / 2, m_scale / 2);
 	m_quitButton.setTextureRect(IntRect(0, 200, 456, 112));
 
+	//load font
 	if (!m_font.loadFromFile("fonts/PetitFormalScript-Regular.ttf")) {
 		perror("failed to load font");
 	}
 
+	//set texts
 	m_startButtonText.setFont(m_font);
 	m_startButtonText.setString("Play");
 	m_startButtonText.setScale(m_scale, m_scale);
@@ -132,6 +147,10 @@ Menu::Menu(double a_scale)
 	m_whiteWinText.setFillColor(Color(255, 255, 255));
 	m_whiteWinText.setOutlineColor(Color(150, 150, 150));
 	m_whiteWinText.setOutlineThickness(0.25);
+
+	//set background fade
+	m_fade.setSize(Vector2f(453 * m_scale, 453 * m_scale));
+	m_fade.setFillColor(Color(175, 175, 175, 128));
 }
 
 double Menu::GetScale()
@@ -154,26 +173,105 @@ void Menu::SetPause(bool a_isPaused)
 	m_isPaused = a_isPaused;
 }
 
+/**/
+/*
+Menu::OpenStartMenu()
+
+NAME
+
+		Menu::OpenStartMenu - displays the elements of the start menu
+
+SYNOPSIS
+
+		void Menu::OpenStartMenu(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the start menu buttons, then draw the backgound
+		fade and buttons
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::OpenStartMenu(RenderWindow& a_win)
 {
+	//position the buttons
 	m_startButton.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
 	m_quitButton.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
-
+	
+	//draw menu elements
+	a_win.draw(m_fade);
 	DrawStartButton(a_win);
 	DrawQuitButton(a_win);
 }
+/*void Menu::OpenStartMenu(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::OpenPauseMenu()
+
+NAME
+
+		Menu::OpenPauseMenu - displays the elements of the pause menu
+
+SYNOPSIS
+
+		void Menu::OpenPauseMenu(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the pause menu buttons, then draw the backgound
+		fade and buttons
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::OpenPauseMenu(RenderWindow& a_win)
 {
+	//position the buttons
 	m_newGameButton.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
 	m_quitButton.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
 
+	//draw menu elements
+	a_win.draw(m_fade);
 	DrawNewGameButton(a_win);
 	DrawQuitButton(a_win);
 }
+/*void Menu::OpenPauseMenu(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::CloseMenu()
+
+NAME
+
+		Menu::CloseMenu - closes any menus that are open
+
+SYNOPSIS
+
+		void Menu::CloseMenu();
+
+DESCRIPTION
+
+		This function will remove all menu elements from the screen
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::CloseMenu()
 {
+	//move menu elements off the screen
 	m_startButton.setPosition(-200, -200);
 	m_startButtonText.setPosition(-200, -200);
 
@@ -187,7 +285,31 @@ void Menu::CloseMenu()
 	m_blackWinText.setPosition(-200, -200);
 	m_whiteWinText.setPosition(-200, -200);
 }
+/*void Menu::CloseMenu()*/
 
+/**/
+/*
+Menu::DrawStartButton()
+
+NAME
+
+		Menu::DrawStartButton - displays the elements of the start button
+
+SYNOPSIS
+
+		void Menu::DrawStartButton(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the button text and display the button.
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::DrawStartButton(RenderWindow& a_win)
 {
 	//calculate text position
@@ -201,7 +323,31 @@ void Menu::DrawStartButton(RenderWindow& a_win)
 	a_win.draw(m_startButton);
 	a_win.draw(m_startButtonText);
 }
+/*void Menu::DrawStartButton(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::DrawNewGameButton()
+
+NAME
+
+		Menu::DrawNewGameButton - displays the elements of the new game button
+
+SYNOPSIS
+
+		void Menu::DrawNewGameButton(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the button text and display the button.
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::DrawNewGameButton(RenderWindow& a_win)
 {
 	//calculate text position
@@ -215,7 +361,31 @@ void Menu::DrawNewGameButton(RenderWindow& a_win)
 	a_win.draw(m_newGameButton);
 	a_win.draw(m_newGameButtonText);
 }
+/*void Menu::DrawNewGameButton(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::DrawQuitButton()
+
+NAME
+
+		Menu::DrawQuitButton - displays the elements of the quit button
+
+SYNOPSIS
+
+		void Menu::DrawQuitButton(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the button text and display the button.
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::DrawQuitButton(RenderWindow& a_win)
 {
 	//calculate text position
@@ -229,7 +399,31 @@ void Menu::DrawQuitButton(RenderWindow& a_win)
 	a_win.draw(m_quitButton);
 	a_win.draw(m_quitButtonText);
 }
+/*void Menu::DrawQuitButton(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::DrawBlackVictoryText()
+
+NAME
+
+		Menu::DrawBlackVictoryText - displays the text that declares the black player as the winner
+
+SYNOPSIS
+
+		void Menu::DrawBlackVictoryText(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the victory text and display it.
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::DrawBlackVictoryText(RenderWindow& a_win)
 {
 	//calculate text position
@@ -246,7 +440,31 @@ void Menu::DrawBlackVictoryText(RenderWindow& a_win)
 	a_win.draw(m_checkmateText);
 	a_win.draw(m_blackWinText);
 }
+/*void Menu::DrawBlackVictoryText(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::DrawWhiteVictoryText()
+
+NAME
+
+		Menu::DrawWhiteVictoryText - displays the text that declares the white player as the winner
+
+SYNOPSIS
+
+		void Menu::DrawWhiteVictoryText(RenderWindow& a_win);
+			a_win  --> the Window object that displays the visual components of the game
+
+DESCRIPTION
+
+		This function will calculate the positioning of the victory text and display it.
+
+RETURNS
+
+		void
+
+*/
+/**/
 void Menu::DrawWhiteVictoryText(RenderWindow& a_win)
 {
 	//calculate text position
@@ -263,30 +481,112 @@ void Menu::DrawWhiteVictoryText(RenderWindow& a_win)
 	a_win.draw(m_checkmateText);
 	a_win.draw(m_whiteWinText);
 }
+/*void Menu::DrawWhiteVictoryText(RenderWindow& a_win)*/
 
+/**/
+/*
+Menu::StartButtonClicked()
+
+NAME
+
+		Menu::StartButtonClicked - checks if the start button was clicked by the player
+
+SYNOPSIS
+
+		bool Menu::StartButtonClicked(const int a_x, const int a_y);
+			a_x  --> the x coordinate of the mouse position
+			a_y	 --> the y coordinate of the mouse position
+
+DESCRIPTION
+
+		This function will check if the mouse is positioned within the bounds of the
+		button.
+
+RETURNS
+
+		Returns true if the mouse is positioned over the button, false if it is not.
+
+*/
+/**/
 bool Menu::StartButtonClicked(const int a_x, const int a_y)
 {
+	//check if the mouse is positioned on the button
 	if (m_startButton.getGlobalBounds().contains(a_x, a_y)) {
 		return true;
 	}
 
 	return false;
 }
+/*bool Menu::StartButtonClicked(const int a_x, const int a_y)*/
 
+/**/
+/*
+Menu::NewGameButtonClicked()
+
+NAME
+
+		Menu::NewGameButtonClicked - checks if the new game button was clicked by the player
+
+SYNOPSIS
+
+		bool Menu::NewGameButtonClicked(const int a_x, const int a_y);
+			a_x  --> the x coordinate of the mouse position
+			a_y	 --> the y coordinate of the mouse position
+
+DESCRIPTION
+
+		This function will check if the mouse is positioned within the bounds of the
+		button.
+
+RETURNS
+
+		Returns true if the mouse is positioned over the button, false if it is not.
+
+*/
+/**/
 bool Menu::NewGameButtonClicked(const int a_x, const int a_y)
 {
+	//check if the mouse is positioned on the button
 	if (m_newGameButton.getGlobalBounds().contains(a_x, a_y)) {
 		return true;
 	}
 
 	return false;
 }
+/*bool Menu::NewGameButtonClicked(const int a_x, const int a_y)*/
 
+/**/
+/*
+Menu::QuitButtonClicked()
+
+NAME
+
+		Menu::QuitButtonClicked - checks if the quit button was clicked by the player
+
+SYNOPSIS
+
+		bool Menu::QuitButtonClicked(const int a_x, const int a_y);
+			a_x  --> the x coordinate of the mouse position
+			a_y	 --> the y coordinate of the mouse position
+
+DESCRIPTION
+
+		This function will check if the mouse is positioned within the bounds of the 
+		button.
+
+RETURNS
+
+		Returns true if the mouse is positioned over the button, false if it is not.
+
+*/
+/**/
 bool Menu::QuitButtonClicked(const int a_x, const int a_y)
 {
+	//check if the mouse is positioned on the button
 	if (m_quitButton.getGlobalBounds().contains(a_x, a_y)) {
 		return true;
 	}
 
 	return false;
 }
+/*bool Menu::QuitButtonClicked(const int a_x, const int a_y)*/

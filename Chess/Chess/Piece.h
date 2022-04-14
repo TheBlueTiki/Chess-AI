@@ -13,6 +13,7 @@ class Piece {
 protected:
 	Sprite m_sprite;
 	std::string m_type;
+	int m_typeNum;
 	std::string m_color;
 	bool m_isCaptured;
 	bool m_wasMoved;
@@ -27,6 +28,7 @@ public:
 	//selectors
 	Sprite GetSprite();
 	std::string GetType();
+	int GetTypeNum();
 	std::string GetColor();
 	bool IsCaptured();
 	bool WasMoved();
@@ -43,6 +45,7 @@ public:
 	void SetSpriteTextureRect(const int a_left, const int a_top, const int a_width, const int a_height);
 	void SetSpriteScale(const double a_scale);
 	void SetType(const std::string a_type);
+	void SetTypeNum(const int a_type);
 	void SetColor(const std::string a_color);
 	void SetCapture(const bool a_isCaptured);
 	void SetMoved(const bool a_wasMoved);
@@ -53,10 +56,11 @@ public:
 	//utility functions
 	bool IsCurrentlyHeld(const int a_x, const int a_y);
 	virtual void UpdateValidMoves(int a_size, Piece* a_pieces[]);
+	virtual void ValidMovesAt(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
 	void ClearValidMoves();
 	bool IsValidMove(const std::string a_move);
 	bool IsOutOfBounds(const std::string a_move);
-	bool IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size);
+	bool IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
 	std::string ToChessNote(const Vector2f a_position, const int a_size);
 	Vector2f ToCoord(const std::string a_position, const int a_size);
 };
