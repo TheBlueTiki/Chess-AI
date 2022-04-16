@@ -32,9 +32,9 @@ public:
 	std::vector<std::string> GetThreatPath(std::string a_pos1, std::string a_pos2);
 	std::vector<std::string> StraightThreatPath(std::string a_pos1, std::string a_pos2, int a_direction);
 	std::vector<std::string> DiagonalThreatPath(std::string a_pos1, std::string a_pos2, int a_direction);
-	std::vector<int> ScoreMoves(Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
+	std::vector<int> ScoreMoves(Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves, int a_level);
 	bool IsInCheck(Piece* a_pieces[], const int a_size);
-	int GetScore(Piece* a_pieces[], const int a_size, const std::string a_move);
+	int GetScore(Piece* a_pieces[], const int a_size, const std::string a_move, int a_level);
 	int GetPieceValue(const int a_typeNum);
 	int ScorePotential(Piece* a_pieces[], const int a_size, const std::string a_from, const std::string a_to);
 	void Resize(std::vector<int>& a_values);

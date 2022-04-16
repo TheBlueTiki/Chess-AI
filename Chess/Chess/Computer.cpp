@@ -14,7 +14,7 @@ void Computer::TakeTurn(Piece* a_pieces[], const int a_size)
 	std::random_shuffle(allMoves.begin(), allMoves.end());
 
 	//score the moves
-	std::vector<int> scores = ScoreMoves(a_pieces, a_size, allMoves);
+	std::vector<int> scores = ScoreMoves(a_pieces, a_size, allMoves, 2);
 
 	//complete the binary treee
 	Resize(scores);
@@ -168,7 +168,7 @@ int Computer::FindDefense(Piece* a_pieces[], const int a_size, std::vector<std::
 		to += a_moves[i][3];
 		
 		if (a_pieces[threatIndex]->ToChessNote(a_pieces[threatIndex]->GetOldPosition(), a_size) == to) {
-			score = GetScore(a_pieces, a_size, a_moves[i]);
+			score = GetScore(a_pieces, a_size, a_moves[i], 1);
 			if (score > bestScore) {
 				bestScore = score;
 				best = i;
@@ -213,7 +213,7 @@ int Computer::ProtectKing(Piece* a_pieces[], const int a_size, std::vector<std::
 			//search through the threat's path
 			for (int j = 0; j < threatPath.size(); j++) {
 				if (to == threatPath[j] && from != kingPos) {
-					score = GetScore(a_pieces, a_size, a_moves[i]);
+					score = GetScore(a_pieces, a_size, a_moves[i], 1);
 
 					//score the options to make the best decision
 					if (score > bestScore) {
@@ -252,7 +252,7 @@ int Computer::ProtectKing(Piece* a_pieces[], const int a_size, std::vector<std::
 				//check if the move is out of the threat's path
 				if (safe) {
 					//score the moves to get the best one
-					score = GetScore(a_pieces, a_size, a_moves[i]);
+					score = GetScore(a_pieces, a_size, a_moves[i], 1);
 					if (score > bestScore) {
 						bestScore = score;
 						best = i;
@@ -269,7 +269,7 @@ int Computer::ProtectKing(Piece* a_pieces[], const int a_size, std::vector<std::
 			from += a_moves[i][1];
 
 			if (from == kingPos) {
-				score = GetScore(a_pieces, a_size, a_moves[i]);
+				score = GetScore(a_pieces, a_size, a_moves[i], 1);
 				if (score > bestScore) {
 					bestScore = score;
 					best = i;
@@ -499,13 +499,13 @@ std::vector<std::string> Computer::DiagonalThreatPath(std::string a_pos1, std::s
 	return path;
 }
 
-std::vector<int> Computer::ScoreMoves(Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves)
+std::vector<int> Computer::ScoreMoves(Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves, int a_level)
 {
 	std::vector<int> scores;
 	std::string to;
 
 	for (int i = 0; i < a_moves.size(); i++) {
-		scores.push_back(GetScore(a_pieces, a_size, a_moves[i]));
+		scores.push_back(GetScore(a_pieces, a_size, a_moves[i], a_level));
 	}
 
 	return scores;
@@ -547,7 +547,7 @@ bool Computer::IsInCheck(Piece* a_pieces[], const int a_size)
 	return false;
 }
 
-int Computer::GetScore(Piece* a_pieces[], const int a_size, const std::string a_move)
+int Computer::GetScore(Piece* a_pieces[], const int a_size, const std::string a_move, int a_level)
 {
 	int score = 0;
 	int n = 0;
@@ -594,8 +594,8 @@ int Computer::GetScore(Piece* a_pieces[], const int a_size, const std::string a_
 		}
 	}
 
-	//no need to look into moves that will win the game
-	if (score < 800 && score > -800) {
+	//check if looking 2 moves ahead is necessary
+	if (a_level > 1 && score < 800 && score > -800) {
 		score += ScorePotential(a_pieces, a_size, from, to);
 	}
 
