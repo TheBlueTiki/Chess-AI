@@ -169,7 +169,7 @@ void Piece::SetNewPosition(const Vector2f a_position)
     m_newPosition = a_position;
 }
 
-void Piece::UpdateValidMoves(int a_size, Piece* a_pieces[])
+void Piece::UpdateValidMoves(const int a_size, Piece* a_pieces[])
 {
 }
 
@@ -267,7 +267,7 @@ NAME
 
 SYNOPSIS
 
-        bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size);
+        bool Piece::IsObstructed(const std::string a_move, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
             a_move  --> the move to be validated
             a_pieces  --> the set of all pieces on the board
             a_size  --> the size of the grid squares

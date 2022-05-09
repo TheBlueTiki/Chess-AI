@@ -218,7 +218,7 @@ void Game::ResetPieces()
 		}
 	}
 	
-	std::cout << "-=New round=-" << std::endl;
+	std::cout << "-=New Game=-" << std::endl;
 
 	//enable the player's turn
 	SetTurn(true);

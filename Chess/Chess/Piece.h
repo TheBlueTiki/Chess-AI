@@ -55,7 +55,7 @@ public:
 
 	//utility functions
 	bool IsCurrentlyHeld(const int a_x, const int a_y);
-	virtual void UpdateValidMoves(int a_size, Piece* a_pieces[]);
+	virtual void UpdateValidMoves(const int a_size, Piece* a_pieces[]);
 	virtual void ValidMovesAt(std::string a_pos, Piece* a_pieces[], const int a_size, std::vector<std::string>& a_moves);
 	void ClearValidMoves();
 	bool IsValidMove(const std::string a_move);

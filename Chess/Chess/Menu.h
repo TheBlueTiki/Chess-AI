@@ -16,7 +16,7 @@ private:
 	Sprite m_startButton, m_newGameButton, m_quitButton;
 	Font m_font;
 	Text m_startButtonText, m_newGameButtonText, m_quitButtonText, m_checkmateText, m_blackWinText, m_whiteWinText;
-	RectangleShape m_fade;
+	RectangleShape m_fade, m_startButtonBorder, m_newGameButtonBorder, m_quitButtonBorder;
 public:
 	//constructors
 	Menu();

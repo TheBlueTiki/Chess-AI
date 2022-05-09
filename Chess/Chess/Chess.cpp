@@ -8,16 +8,23 @@ using namespace sf;
 
 int main()
 {
-    bool m_start = false;
+    //graphical elements
     double m_scale = 3;
-    float dx = 0, dy = 0;
     Game m_game(56, m_scale);
     Menu m_menu(m_scale);
-    RenderWindow m_window(VideoMode(453 * m_scale, 453 * m_scale), "High Quality Graphics!");
+    RenderWindow m_window(VideoMode(453 * m_scale, 453 * m_scale), "Chess");
     
     //construct the board and pieces
     m_game.GeneratePieces();
+    
+    //gret the player in the console
+    std::cout << "-=Welcome=-" << std::endl;
 
+    //interactive elements
+    bool m_start = false;
+    float dx = 0, dy = 0;
+
+    //open window
     while (m_window.isOpen()) {
         //mouse position
         Vector2i pos = Mouse::getPosition(m_window);
@@ -26,6 +33,7 @@ int main()
         while (m_window.pollEvent(event)) {
             //close
             if (event.type == Event::Closed) {
+                std::cout << "-=Goodbye=-" << std::endl;
                 m_window.close();
             }
             //pause
@@ -51,6 +59,7 @@ int main()
                     if (m_menu.StartButtonClicked(pos.x, pos.y)) {
                         m_start = true;
                         m_menu.CloseMenu();
+                        std::cout<< "-=New Game=-" <<std::endl;
                     }
                     else if (m_menu.NewGameButtonClicked(pos.x, pos.y)) {
                         m_game.ResetPieces();
@@ -58,6 +67,7 @@ int main()
                         m_menu.SetPause(false);
                     }
                     else if (m_menu.QuitButtonClicked(pos.x, pos.y)) {
+                        std::cout << "-=Goodbye=-" << std::endl;
                         m_window.close();
                     }
                 }

@@ -71,6 +71,14 @@ Menu::Menu()
 	m_whiteWinText.setOutlineColor(Color(150, 150, 150));
 	m_whiteWinText.setOutlineThickness(0.25);
 
+	//set boarders
+	m_startButtonBorder.setSize(Vector2f(m_startButton.getGlobalBounds().width, m_startButton.getGlobalBounds().height));
+	m_startButtonBorder.setFillColor(Color(0, 0, 0, 0));
+	m_startButtonBorder.setOutlineColor(Color(255, 255, 255));
+	m_startButtonBorder.setOutlineThickness(2);
+	m_newGameButtonBorder = m_startButtonBorder;
+	m_quitButtonBorder = m_startButtonBorder;
+
 	//set background fade
 	m_fade.setSize(Vector2f(453 * m_scale, 453 * m_scale));
 	m_fade.setFillColor(Color(255, 255, 255, 128));
@@ -148,6 +156,14 @@ Menu::Menu(double a_scale)
 	m_whiteWinText.setOutlineColor(Color(150, 150, 150));
 	m_whiteWinText.setOutlineThickness(0.25);
 
+	//set boarders
+	m_startButtonBorder.setSize(Vector2f(m_startButton.getGlobalBounds().width, m_startButton.getGlobalBounds().height));
+	m_startButtonBorder.setFillColor(Color(0, 0, 0, 0));
+	m_startButtonBorder.setOutlineColor(Color(255, 255, 255));
+	m_startButtonBorder.setOutlineThickness(2);
+	m_newGameButtonBorder = m_startButtonBorder;
+	m_quitButtonBorder = m_startButtonBorder;
+
 	//set background fade
 	m_fade.setSize(Vector2f(453 * m_scale, 453 * m_scale));
 	m_fade.setFillColor(Color(175, 175, 175, 128));
@@ -202,11 +218,17 @@ void Menu::OpenStartMenu(RenderWindow& a_win)
 	//position the buttons
 	m_startButton.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
 	m_quitButton.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
+
+	//position the boarders
+	m_startButtonBorder.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
+	m_quitButtonBorder.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
 	
 	//draw menu elements
 	a_win.draw(m_fade);
 	DrawStartButton(a_win);
 	DrawQuitButton(a_win);
+	a_win.draw(m_startButtonBorder);
+	a_win.draw(m_quitButtonBorder);
 }
 /*void Menu::OpenStartMenu(RenderWindow& a_win)*/
 
@@ -240,10 +262,16 @@ void Menu::OpenPauseMenu(RenderWindow& a_win)
 	m_newGameButton.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
 	m_quitButton.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
 
+	//position the boarders
+	m_newGameButtonBorder.setPosition(112 * m_scale, 112 * m_scale + 28 * m_scale);
+	m_quitButtonBorder.setPosition(112 * m_scale, 112 * m_scale + 140 * m_scale);
+
 	//draw menu elements
 	a_win.draw(m_fade);
 	DrawNewGameButton(a_win);
 	DrawQuitButton(a_win);
+	a_win.draw(m_newGameButtonBorder);
+	a_win.draw(m_quitButtonBorder);
 }
 /*void Menu::OpenPauseMenu(RenderWindow& a_win)*/
 
